@@ -16,8 +16,6 @@ function getEndpoints(deviceAddress, endpoints)
 {
    endpoints.addEndpoint("1", "Temperatura del Tracker", endpointType.temperatureSensor);
    endpoints.addEndpoint("2", "Localización", endpointType.locationTracker);
-   endpoints.addEndpoint("3", "Temperatura Bluetooth", endpointType.temperatureSensor);
-   //endpoints.addEndpoint("4", "Estado Puerta", endpointType.iasEndpointSubType.doorSensor);
    endpoints.addEndpoint("8", "Batería Device", endpointType.voltageSensor);
 }
 
@@ -31,7 +29,7 @@ function validateDeviceAddress(address, result)
   // In the code below, a validation is made to ensure that the address 
   // is exactly 10 characters long.
   
-  if (address.length != 16) {
+  if (address.length != 15) {
     result.ok = false;
     result.errorMessage = {
       en: "The address must be 15 characters long", 
@@ -50,7 +48,7 @@ function updateDeviceUIRules(device, rules)
   // user interface. This means that the device will be limited to the 
   // endpoints defined by function getEndpoints() above.
   
-   rules.canCreateEndpoints = true;
+  // rules.canCreateEndpoints = false;
 }
 
 function updateEndpointUIRules(endpoint, rules)
@@ -64,6 +62,6 @@ function updateEndpointUIRules(endpoint, rules)
   // - The endpoint subtype can be changed, but only for the second 
   //   endpoint.
   
-   rules.canDelete = true;
+   rules.canDelete = false;
   // rules.canEditSubType = (endpoint.address == "2");
 }
